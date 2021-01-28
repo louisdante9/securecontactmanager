@@ -1,24 +1,22 @@
-import { getUserData, saveUserData, findExist } from "../utils";
+import { getUserData, saveUserData, findExist,cipher, decipher } from "../utils";
 import { Conflict } from "../utils/errors/conflict";
-import { unauthorized } from "../utils/errors/unauthourized";
 import { NotFound } from "../utils/errors/notfound";
 
 
 export const create = async (request, response) => {
 	const { name, email, phone, address } = request;
 	try {
-		const existUsers = await getUserData("datastore.json");
+		const existUsers = await decipher("data.json");
 		if (name == null || email == null || phone == null || address == null) {
 			return [null, new NotFound("User data missing")];
 		}
-
+		
 		const userexist = await findExist(existUsers, name);
-		if (userexist) {
-			return [null, new Conflict("name already exist")];
-
-		}
+		if (userexist) return [null, new Conflict("name already exist")];
+	
 		existUsers.push({ name, email, phone, address });
-		await saveUserData(existUsers, "datastore.json");
+		console.log(typeof existUsers, existUsers, "contacts");
+		const encrypt = await cipher("data.json", existUsers);
 		return [{ name, email, phone, address }, null];
 	} catch (error) {
 		return [null, error]

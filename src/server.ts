@@ -4,7 +4,7 @@ import cors from "cors";
 import { config } from "dotenv";
 import { routes } from "./routes";
 import { notFoundError, errorHandler } from "./utils/errors/globalErrorHandler";
-
+// import {encrypt, decrypt} from './encryption'
 
 
 
@@ -17,6 +17,13 @@ app.disable("x-powered-by");
 app.use(json(), urlencoded({ extended: false }), morgan("dev"), cors());
 app.use("/v1", routes(express));
 app.use(notFoundError,errorHandler);
+// const plain = Buffer.from("[]");
+
+// const encrypted = encrypt(plain);
+// console.log("Encrypted:", encrypted.toString());
+
+// const decrypted = decrypt(encrypted);
+// console.log("Decrypted:", decrypted.toString());
 
 app.listen(PORT, () => {
   console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
