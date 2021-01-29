@@ -7,24 +7,17 @@ key = crypto
   .digest("base64")
   .substr(0, 32);
 
-export const encrypt = (buffer) => {
-  // Create an initialization vector
+export const encrypt = (buffer: any) => {
   const iv = crypto.randomBytes(16);
-  // Create a new cipher using the algorithm, key, and iv
   const cipher = crypto.createCipheriv(algorithm, key, iv);
-  // Create the new (encrypted) buffer
   const result = Buffer.concat([iv, cipher.update(buffer), cipher.final()]);
   return result;
 };
 
-export const decrypt = (encrypted) => {
-  // Get the iv: the first 16 bytes
+export const decrypt = (encrypted: any) => {
   const iv = encrypted.slice(0, 16);
-  // Get the rest
   encrypted = encrypted.slice(16);
-  // Create a decipher
   const decipher = crypto.createDecipheriv(algorithm, key, iv);
-  // Actually decrypt it
   const result = Buffer.concat([decipher.update(encrypted), decipher.final()]);
   return result;
 };
