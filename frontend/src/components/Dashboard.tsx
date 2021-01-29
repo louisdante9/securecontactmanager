@@ -8,7 +8,12 @@ import {
   searchContact
 } from "../actions";
 import Modal from './Modal'
-
+interface objectMap { 
+  name: string,
+  phone: string,
+  email: string,
+  address: string
+};
 const Dashboard = ({
   getAllContacts,
   userContacts,
@@ -24,9 +29,13 @@ const Dashboard = ({
   const [address, setAddress] = useState("");
   const [show, setShow] = useState(false);
   const [contacts, setContacts] = useState([]);
-  const [viewContact, setviewContact] = useState({});
+  const [viewContact, setviewContact] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    address: ""
+  });
   const [edit, setEdit] = useState(false);
-  const [search, setSearch] = useState("");
   useEffect(() => {
     getAllContacts();
   }, [getAllContacts]);
@@ -57,7 +66,12 @@ const Dashboard = ({
     setAddress(contact.address);
   };
   const handleSearch = (value) => {
-    setviewContact({});
+    setviewContact({
+      name: "",
+      phone: "",
+      email: "",
+      address: ""
+    });
     searchContact(value);   
   };
 
@@ -90,12 +104,12 @@ const Dashboard = ({
           )}
         </div>
         <div className="add-note">
+          <i className="fas fa-search"></i>
           <input
             type="text"
             placeholder="search contact list"
             onChange={(e) => handleSearch(e.target.value)}
           />
-          <i className="fas fa-search" onClick={handleSearch}></i>
         </div>
       </div>
       <div className="single-note">
@@ -107,7 +121,7 @@ const Dashboard = ({
         />
         <div className="single-note-header">
           <div></div>
-          {viewContact.name && (
+          {viewContact!.name && (
             <div>
               <i
                 className={edit ? "fas fa-close" : "fas fa-edit"}
@@ -142,8 +156,8 @@ const Dashboard = ({
               <textarea
                 onChange={(e) => setAddress(e.target.value)}
                 defaultValue={viewContact.address}
-                cols="30"
-                rows="10"></textarea>
+                cols={30}
+                rows={10}></textarea>
             </div>
             <div>
               <button onClick={(e) => handleUpdate(e, viewContact.name)}>

@@ -61,7 +61,7 @@ body {
       align-items: center;
       input[type="text"] {
         height: 35px;
-        width: 66%;
+        width: 85%;
         outline: none;
         padding: 7px;
         border: 2px solid #aeaeae;
@@ -69,6 +69,7 @@ body {
       }
       i {
         color: #aeaeae;
+        cursor: default;
       }
     }
   }

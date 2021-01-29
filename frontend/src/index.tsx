@@ -11,16 +11,15 @@ import "./index.scss";
 import "font-awesome/css/font-awesome.min.css";
 
 import App from "./App";
+declare global {
+    interface Window {
+      __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const middleware = applyMiddleware(thunk);
 const configureStore = (state = {}) =>
-  createStore(
-    rootReducer,
-    state,
-    compose(
-      middleware,
-      window.devToolsExtension ? window.devToolsExtension() : (f) => f
-    )
-  );
+  createStore(rootReducer, state, compose(middleware, composeEnhancers()));
 const store = configureStore();
 const { localStorage } = window;
 const jwtToken = localStorage && localStorage.getItem("token");
@@ -36,7 +35,7 @@ if (decodedToken) {
   }
 }
 ReactDOM.render(
-  <Provider store={store}>
+<Provider store={store}>
     <App />
   </Provider>,
   document.getElementById("root")

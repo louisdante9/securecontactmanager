@@ -56,8 +56,8 @@ const Modal = ({ handleClose, show, createContact, history }) => {
         <div>
           <textarea
             placeholder="Enter address of contact"
-            cols="30"
-            rows="10"
+            cols={30}
+            rows={10}
             onChange={(e) => setAddress(e.target.value)}></textarea>
         </div>
         <div className="cta btn">

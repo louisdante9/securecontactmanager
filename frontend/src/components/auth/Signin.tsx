@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { SigninRequest } from "../../actions";
 import swal from "sweetalert";
 import { validateInput } from "../../utils/Validator";
-const Signin = (props) => {
+const Signin = (props: { SigninRequest: (arg0: { password: string; }) => Promise<any>; history: string[]; }) => {
   const [password, setPassword] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
 
@@ -12,11 +12,11 @@ const Signin = (props) => {
     password.trim() ? setBtnDisabled(false) : setBtnDisabled(true);
   }, [password]);
 
-  const onSubmit = (event) => {
+  const onSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     const { errors } = validateInput({ password });
     if (errors.password) {
-      let errorMessage = { icon: "warning" };
+      let errorMessage = { icon: "warning", title: "" };
       errorMessage.title = errors.invalidEmail;
       swal(errorMessage);
     }
@@ -27,7 +27,7 @@ const Signin = (props) => {
       .then(() => {
         props.history.push("/dashboard");
       })
-      .catch((err) => {
+      .catch((err: any) => {
         swal({
           title: "Oops!, sorry password is wrong",
           icon: "warning",

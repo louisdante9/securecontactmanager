@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { validateInput } from "../../utils/Validator";
 import { SignupRequest } from "../../actions";
 
-const Signup = (props) => {
+const Signup = (props: { SignupRequest: (arg0: { password: string; }, arg1: (res: any) => any) => void; history: string[]; }) => {
   
   const [password, setPassword] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -18,7 +18,7 @@ const Signup = (props) => {
    
   }, [ password]);
 
-  const onSubmit = (event) => {
+  const onSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
       const fields = {
         password,
@@ -26,14 +26,14 @@ const Signup = (props) => {
       const { errors, isValid } = validateInput(fields);
 
       if (isValid) {
-        props.SignupRequest(fields, (res) => {
+        props.SignupRequest(fields, (res: { status: number; }) => {
           if (res && res.status === HttpStatus.CREATED) {
             swal({
               title: "Welcome to contact book!",
               text: "Your account has been created successfully!",
               icon: "success",
               button: "Continue",
-            });
+            } as any);
             return props.history.push("/dashboard");
           } 
         })

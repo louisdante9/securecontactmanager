@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from  'react';
 import {API} from '../actions';
-import Signup from '../components/auth/Signup';
-import Signin from '../components/auth/Signin';
+import Signup from './auth/Signup';
+import Signin from './auth/Signin';
 
 const Home = () => {
     const [data, setData] = useState(false)

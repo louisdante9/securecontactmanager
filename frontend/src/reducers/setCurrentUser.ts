@@ -6,7 +6,7 @@ export const initialState = {
   user: {},
 };
 
-const setCurrentUser = (state = initialState, action = {}) => {
+const setCurrentUser = (state = initialState, action) => {
   switch (action.type) {
     case types.USER_AUTHENTICATED:
       return {
