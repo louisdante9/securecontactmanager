@@ -20,27 +20,4 @@ export const validateInput = ({ email, password }) => {
   };
 };
 
-/**
- *
- * @desc this functtion handles validation for signup form
- *
- * @param {Object} input
- * @returns {Object}
- */
-export const signupValidation = (input) => {
-  const errors = {}
-  if (Validator.isEmpty(input.password)) {
-    errors.password = "Password field is required";
-  }
-  return {
-    errors,
-    isValid: isEmpty(errors),
-  };
-};
 
-export const checkIfEmpty = (obj) => {
-  for (const key in obj) {
-    if (obj[key] === "") return true;
-  }
-  return false;
-};

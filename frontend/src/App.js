@@ -9,16 +9,11 @@ const App = () => {
       <Router>
         <div id="app">
           <Switch>
-            {/* <PrivateRoute exact path="/parcel/:id" component={ViewParcel} />
-          <PrivateRoute exact path="/parcel" component={BookParcel} />*/}
-           
             <PrivateRoute
               exact
               path="/dashboard"
               component={Dashboard}
             />
-           
-           
           </Switch>
           <Route exact path="/" component={CheckLoggedInUser(Home)} />
         </div>
