@@ -3,7 +3,6 @@ import HttpStatus from "http-status-codes";
 import swal from "sweetalert";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
 import { validateInput } from "../../utils/Validator";
 import { SignupRequest } from "../../actions";
 
@@ -50,25 +49,25 @@ const Signup = (props) => {
         <div className="auth-section">
           <form>
             <div>
-              <h2>Welcome to Secret Service</h2>
-              <h3>signup</h3>
+              <h2>Welcome to Simple secure contact manager</h2>
+              <h3>Please enter the password for your new contact data file</h3>
             </div>
-        
-            <div className="form-control">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-              />
+            <div className="form-group">
+              <div className="form-control">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div>
+                <button onClick={onSubmit} disabled={btnDisabled}>
+                  Sign Up
+                </button>
+              </div>
             </div>
-            
-            <div>
-              <button onClick={onSubmit} disabled={btnDisabled}>
-                Sign Up
-              </button>
-            </div>
-          
+
             <div>
               <ul>
                 {error

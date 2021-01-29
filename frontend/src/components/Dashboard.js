@@ -152,7 +152,7 @@ const Dashboard = ({
             </div>
           </div>
         ) : (
-          <div className="single-note-wrapper">
+          <div className={viewContact.name && "single-note-wrapper"}>
             <h4>{viewContact.name}</h4>
             <p> {viewContact.phone && `Phone: ${viewContact.phone}`}</p>
             <p> {viewContact.email && `Email: ${viewContact.email}`}</p>
