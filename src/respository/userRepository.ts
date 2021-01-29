@@ -4,7 +4,7 @@ import { Conflict } from "../utils/errors/conflict";
 import { unauthorized } from "../utils/errors/unauthourized";
 
 
-export const register = async (request, response) => {
+export const register = async (request: any) => {
   try {
     const { password } = request.body;
     const name = process.env.LOGNAME;
@@ -22,7 +22,7 @@ export const register = async (request, response) => {
   }
 };
 
-export const login = async(request, response) => {
+export const login = async(request: any) => {
     try {
         const { password } = request.body;
         const name = process.env.LOGNAME;
@@ -32,7 +32,7 @@ export const login = async(request, response) => {
         if (!userexist || !passmatch) {
           return [null, new unauthorized("Unauthorized user")];
         }
-        return [name, null]
+        return [{name}, null]
 
     } catch (error) {
         return [null, error]

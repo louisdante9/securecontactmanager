@@ -1,3 +1,4 @@
+import { Request, Response, NextFunction } from "express";
 /**
  * Returns a not found 404 json response
  *
@@ -5,7 +6,7 @@
  * @param {Response} res
  * @param next
  */
-export const notFoundError = (req, res, next) => {
+export const notFoundError = (req: Request, res: Response, next: NextFunction) => {
   res.status(404);
   const error = new Error(`Not Found - ${req.originalUrl}`);
   next(error);
@@ -19,7 +20,12 @@ export const notFoundError = (req, res, next) => {
  * @param {Response} res
  * @param next
  */
-export const errorHandler = (err, req, res, next) => {
+export const errorHandler = (
+  err: any,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   let statusCode;
 
   if (err.statusCode) {

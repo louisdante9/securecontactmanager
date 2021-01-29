@@ -8,7 +8,7 @@ export class NotFound extends Error {
    *
    * @param message
    */
-  constructor(message) {
+  constructor(message: string) {
     super(message);
     const { NOT_FOUND } = StatusCodes;
     this.name = getReasonPhrase(NOT_FOUND);

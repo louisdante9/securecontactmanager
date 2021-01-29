@@ -7,7 +7,7 @@ export class unauthorized extends Error {
    * @param message
    */
   public statusCode: number;
-  constructor(message) {
+  constructor(message: string) {
     super(message);
     const { UNAUTHORIZED } = StatusCodes;
     this.name = getReasonPhrase(UNAUTHORIZED);
