@@ -4,11 +4,11 @@ import axios from 'axios';
  *
  * @description this method sets authetication for users
  *
- * @param { object } token
+ * @param { string } token
  *
  * @returns { Object } json
  */
-const setAuthToken = (token) => {
+const setAuthToken = (token: string | boolean) => {
   if (token) {
     axios.defaults.headers.common['authorization'] = token;
   } else {

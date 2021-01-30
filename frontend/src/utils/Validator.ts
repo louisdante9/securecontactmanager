@@ -8,8 +8,8 @@ import isEmpty from "lodash/isEmpty";
  * @param {any} inputData
  * @returns {Object}
  */
-export const validateInput = ({ email, password }) => {
-  const errors = {};
+export const validateInput = ({ password }: any): any => {
+  const errors = {password: ''};
  
   if (Validator.isEmpty(password)) {
     errors.password = "Password field is required";

@@ -8,12 +8,7 @@ import {
   searchContact
 } from "../actions";
 import Modal from './Modal'
-interface objectMap { 
-  name: string,
-  phone: string,
-  email: string,
-  address: string
-};
+
 const Dashboard = ({
   getAllContacts,
   userContacts,
