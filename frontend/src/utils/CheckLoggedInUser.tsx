@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-
+interface obj {
+  isAuthenticated: boolean,
+  history: {
+    push: Function}
+}
 const CheckLoggedInUser = (ComposedComponent) => {
   /**
    *
@@ -10,7 +13,8 @@ const CheckLoggedInUser = (ComposedComponent) => {
     /**
      * @return {*} set user authentication status
      */
-    componentWillMount () {
+    props: obj
+    componentWillMount (): any {
         if (this.props.isAuthenticated) {
           this.props.history.push("/dashboard");
         }
@@ -21,7 +25,7 @@ const CheckLoggedInUser = (ComposedComponent) => {
      * @param {*} nextProps
      * @return {*} props
      */
-    componentWillUpdate (nextProps) {
+    componentWillUpdate (nextProps: { isAuthenticated: any; }): any {
         if (nextProps.isAuthenticated) {
           this.props.history.push("/dashboard");
         }
@@ -36,12 +40,10 @@ const CheckLoggedInUser = (ComposedComponent) => {
       );
     }
   }
+  
+ 
 
-  Authenticate.propTypes = {
-    isAuthenticated: PropTypes.bool.isRequired,
-  };
-
-  const mapStateToProps = state => ({
+  const mapStateToProps = (state: { setCurrentUser: { isAuthenticated: any; }; }) => ({
     isAuthenticated: state.setCurrentUser.isAuthenticated,
   });
 
